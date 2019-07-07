@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			.router-link-exact-active{
+				font-size:30px;
+				color:red;
+				transition: 0.8s
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<router-link to='/home'>首页</router-link>
+			<router-link to='/news'>新闻</router-link>
+			<router-link to='/others'>其他</router-link>
+			
+			<router-view></router-view>
+			
+		</div>
+		
+		<script>
+			var home = {
+				template:'<p>我是首页</p>'
+			}
+			
+			var news = {
+				template:'<p>我是新闻页</p>'
+			}
+			
+			var others = {
+				template:'<p>我是其他页</p>'
+			}
+			
+			var routes = [
+				{path:'/home',component:home},
+				{path:'/news',component:news},
+				{path:'/others',component:others},
+				{path:'/',redirect:'/others'}
+			]
+			
+			var router = new VueRouter({
+				routes
+			})
+			
+			
+			new Vue({
+				el:'.box',
+				router
+			})
+			
+		</script>
+	</body>
+</html>

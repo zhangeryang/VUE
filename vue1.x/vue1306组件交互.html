@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		
+		<aaa :m='msg' :n='gsm'>
+			
+		</aaa>
+		
+		<template id="myTemp">
+			<h1>我是组件模板</h1>
+			{{m}}
+			{{n}}
+		</template>
+		
+		<script>
+			
+			new Vue({
+				el:'body',
+				data:{
+					msg:'how old are you?',
+					gsm:88
+				},
+				components:{
+					aaa:{
+						/*props:['m','n'],*/
+						props:{
+							m:String,
+							n:Number
+						},
+						template:'#myTemp'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
