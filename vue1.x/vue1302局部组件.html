@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			.div1{
+				width: 300px;
+				height: 300px;
+				border: 1px solid black
+			}
+		</style>
+	</head>
+	<body>
+		 
+		<div class="div1">
+			<aaa></aaa>
+		</div>
+		
+		<!--<script>
+			var temp = Vue.extend({
+				 data(){
+				 	return{
+				 		msg:'我是局部组件！'
+				 	}
+				 },
+				 template:'<h1>{{msg}}</h1>'
+			});
+			
+			Vue.component('aaa',temp);
+			
+			new Vue({
+				el:'.div1'
+			})
+			
+		</script>-->
+		
+		<script> 
+			new Vue({
+				el:'.div1',
+				data:{
+					msg2:'123'
+				},
+				components:{
+					'aaa':{
+						data(){
+				 			return{
+				 				msg:'我是局部组件！'
+				 			}
+				 		},
+				 		methods:{
+				 			add:function(){
+				 				this.msg = "hahahaha!";
+				 			}
+				 		},
+					 	template:'<h1>{{msg}}</h1></br><input type="button" @click="add" value="点击"/>'
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>

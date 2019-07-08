@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+	</body>
+		{{msg}}
+		
+		<parentc @setpmsg='getpmsg'></parentc>
+		 
+		<template id="ptemp">
+			<h1>我是父亲组件=>{{pmsg}}</h1>
+			<childc @setcmsg='getmsg'></childc>
+			<input type="button" value="像外层传递" @click="pullb"/>
+		</template>
+		
+		<template id="ctemp">
+			<h2>我是儿子组件=>{{cmsg}}</h2>
+			<input type="button" value="像父亲传递" @click="pullp"/>
+		</template>
+		
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					msg:'我是数据1'
+				},
+				methods:{
+					getpmsg(msg){
+						this.msg = msg
+					}
+				},
+				components:{
+					'parentc':{
+						data(){
+							return{
+								pmsg:'我是父亲数据'
+							}
+						},
+						methods:{
+							getmsg(msg){
+								console.log(msg)
+								this.pmsg = msg
+							},
+							pullb(){
+								this.$emit("setpmsg",this.pmsg);
+							}
+						},
+						template:'#ptemp',
+						components:{
+							'childc':{
+								data(){
+									return{
+										cmsg:'我是儿子数据'
+									}
+								},
+								template:'#ctemp',
+								methods:{
+									pullp(){
+										console.log(this.cmsg)
+										this.$emit("setcmsg",this.cmsg);
+									}
+								}
+							}
+						} 
+					}
+				}
+			})
+		</script>
+	
+</html>

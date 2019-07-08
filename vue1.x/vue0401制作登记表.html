@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="js/vue.min.js"></script>
-
+		
 		<style>
-			body {
+			body{
 				padding: 50px;
 			}
 		</style>
-
+		
 	</head>
-
 	<body>
-
+		
 		<form role="form">
 			<div class="form-group">
 				<label for="name">名称</label>
-				<input type="text" class="form-control" id="name" placeholder="请输入名称" v-model="nameNode">
+				<input type="text" class="form-control" id="name" 
+					   placeholder="请输入名称" v-model="nameNode">
 			</div>
 			<div class="form-group">
 				<label for="name">年龄</label>
-				<input type="text" class="form-control" id="age" placeholder="请输入名称" v-model="ageNode">
+				<input type="text" class="form-control" id="age" 
+					   placeholder="请输入名称" v-model="ageNode">
 			</div>
-
-			<input type="button" class="btn btn-default btn-primary" value="确认" @click='add' />
-			<input type="button" class="btn btn-default btn-primary" value="排序" @click='sort'/>
+			
+			<input type="button" class="btn btn-default btn-primary" value="添加" @click='add'/> 
+			<input type="button" class="btn btn-default btn-primary" value="排序" @click='sort'/> 
 		</form>
-
-		<table class="table table-bordered text-center">
+		
+		<table class="table table-bordered text-center" >
 			<caption>人员信息表</caption>
 			<thead>
 				<tr>
@@ -43,97 +43,89 @@
 					<th>选项</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody>  
 				<tr v-for='i in msg'>
-					<td>{{$index+1}}</td>
-					<td>{{i.name}}</td>
-					<td>{{i.age}}</td>
-					<td>
-						<button type="delete" class="btn btn-default btn-danger" data-toggle="modal" 
-							data-target="#myModal" @click='index=$index'>删除</button>
-					</td>
+					<td>{{$index+1}}</td> 
+					<td>{{i.name}}</td> 
+					<td>{{i.age}}</td> 
+					<td><button type="delete" class="btn btn-default btn-danger" data-toggle="modal" 
+						data-target="#myModal" @click='index=$index'>删除</button></td> 
 				</tr>
 				<tr>
-					<td colspan="4" v-show='msg.length>0?false:true'>请添加信息</td>
+					<td colspan="4" v-show='msg.length>0?false:true'>请添加信息</td> 
 				</tr>
 				<tr>
-					<td colspan="4" v-show='msg.length>0?true:false'>
-						<button type="submit" class="btn btn-default btn-danger" data-toggle="modal" data-target="#allModa2">全部删除</button>
-					</td>
+					<td colspan="4" v-show='msg.length>0?true:false'><button type="submit" 
+						class="btn btn-default btn-danger" data-toggle="modal" data-target="#allModa2">全部删除</button></td> 
 				</tr>
 			</tbody>
 		</table>
-
+		
+		
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">提示框</h4>
-					</div>
-					<div class="modal-body">是否确认删除？</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal" @click='delSure'>确认</button>
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal -->
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+		            </div>
+		            <div class="modal-body">是否确认删除？</div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-danger" data-dismiss="modal" @click='delSure'>确认</button>
+		                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
 		</div>
-
+		
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="allModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">提示框</h4>
-					</div>
-					<div class="modal-body">确认全部删除？</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal" @click='delAllSure'>确认</button>
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal -->
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+		            </div>
+		            <div class="modal-body">确认全部删除？</div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-danger" data-dismiss="modal" @click='delAllSure'>确认</button>
+		                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
 		</div>
-
+		
 		<script>
 			new Vue({
-				el: 'body',
-				data: {
-					'nameNode': '',
-					'ageNode': '',
-					'msg': [],
-					'index': 0
+				el:'body',
+				data:{
+					'nameNode':'',
+					'ageNode':'',
+					'msg':[],
+					'index':0
 				},
-				methods: {
-					add: function() {
-						//						console.log(this.nameNode,this.ageNode);
+				methods:{
+					add:function(){
+//						console.log(this.nameNode,this.ageNode);
 						this.msg.push({
-							name: this.nameNode,
-							age: this.ageNode
-						})
+							name:this.nameNode,
+							age:this.ageNode
+						}) 
 					},
-					delSure: function() {
-						this.msg.splice(this.index, 1);
+					delSure:function(){
+						this.msg.splice(this.index,1);
 					},
-					delAllSure: function() {
-						this.msg = [];
+					delAllSure:function(){
+						this.msg=[];
 					},
 					sort:function(){
-						console.log(this.msg.age);
-						this.msg.sort(function(json1,json2){
-							return json2.age - json1.age;
-						});
+						 this.msg.sort(function(json1,json2){
+						 	return json2.age - json1.age
+						 })
 					}
 				}
 			})
 		</script>
 	</body>
-
 </html>

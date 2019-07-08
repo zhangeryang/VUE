@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>]
+		<!-- v-for循环取数的时候会默认过滤重复的数据 
+		track-by='$index' 取消默认过滤 -->
+		
+		<ul v-for="i in arr" track-by='$index'>
+			<li>{{i}}</li>
+		</ul>
+		<button @click='add'>add</button>
+		<script>
+			
+			new Vue({
+				el:'body',
+				data:{
+					arr:['a','b','c','d']
+				},
+				methods:{
+					add:function(){
+						this.arr.push('e');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

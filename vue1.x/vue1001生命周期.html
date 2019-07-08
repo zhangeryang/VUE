@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div v-red>{{msg}}</div>
+		
+		<script>
+			Vue.directive('red',function(){ 
+				this.el.style.color = "red"; 
+				console.log("我是自定义属性");
+			}) 
+			 
+			var v=new Vue({
+				el:'body',
+				data:{
+					msg:'msg'
+				},
+				created(){
+					console.log("实例已经创建了");
+				},
+				beforeCompile(){
+					console.log("在实例编译之前");
+				},
+				compiled(){
+					console.log("在实例编译之后");
+				},
+				ready(){
+					console.log("实例已经插入到文档中");
+//					console.log("可以理解成 window.onload");
+				},
+				beforeDestroy(){
+					console.log("实例在销毁之前");
+				},
+				destroyed(){
+					console.log("实例在销毁之后");
+				}
+			})
+			
+			
+			onclick = function(){
+				v.$destroy();
+				console.log("实例被销毁了");
+			}
+			
+		</script>
+	</body>
+</html>

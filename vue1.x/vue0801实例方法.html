@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		
+		<!-- 改变内容的方式一: 用函数改变
+		{{msg}}
+		<button @click='change'>改变</button>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					msg:'hello vue!'
+				},
+				methods:{
+					change:function(){
+						this.msg='hahhaha';
+					}
+				}
+			})
+		</script>-->
+		
+		<!--改变内容的方式二：用实例对象改变
+		{{msg}} 
+		<script>
+			var v=new Vue({
+				el:'body',
+				data:{
+					msg:'hello vue!'
+				} 
+			})
+			
+			console.log(v);
+			v.msg = 'hahahaha';
+			//相当于 v.$data.msg = 'hahahhaha';
+		</script>-->
+		
+		
+		<!--
+		{{msg}} 
+		<script>
+			var v=new Vue({
+				data:{
+					msg:'hello vue!'
+				} 
+			}).$mount('body');//外部挂作用域。它的级别没有el里面的高
+			
+			console.log(v);
+			v.msg = 'hahahaha';
+		</script>-->
+		
+		<div>{{msg}} </div> 
+		<script>
+			var v=new Vue({
+				el:'div',
+				data:{
+					msg:'hello vue!'
+				} 
+			}) 
+			
+			console.log(v.$el);
+			v.$el.style.cssText = 'width:200px;height:200px;background:#eee;';
+			
+			console.log(v.$options);//获取vue对象的属性
+			console.log(v.$log());//快速查看data的值
+			 
+		</script>
+		
+		
+	</body>
+</html>

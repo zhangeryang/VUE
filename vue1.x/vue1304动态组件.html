@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		 
+		<input type="button" value="aaa" @click="msg='aaa'"/>
+		<input type="button" value="bbb" @click="msg='bbb'"/></br>
+		
+		<components :is="msg"></components>  
+		<!-- is属性的值是哪个组件的名字，就会显示哪个组件 -->
+		
+		<template id="tempa">
+			<h1>{{msga}}</h1>
+		</template>
+		
+		<template id="tempb">
+			<h1 @click="cg">{{msgb}}</h1>
+		</template>
+		
+		<script>
+			
+			new Vue({
+				el:'body',
+				data:{
+					msg:'动态组件'
+				},
+				components:{
+					'aaa':{
+						data(){
+				 			return{
+				 				msga:'hahahahhaaaaaaaaaaaaaaa'
+				 			}
+				 		}, 
+					 	template:'#tempa'
+					},
+					'bbb':{
+						data(){
+				 			return{
+				 				msgb:'hehehehehhbbbbbbbbbbbbbb'
+				 			}
+				 		},
+				 		methods:{
+				 			cg:function(){
+				 				this.msgb = "bbbbbbbbbbb!";
+				 			}
+				 		},
+					 	template:'#tempb'
+					}
+				}
+			})
+		</script>
+		
+		
+		
+	</body>
+</html>

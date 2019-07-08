@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.box{
+				width: 520px;
+				height: 280px;
+				position: absolute;
+				top:50%;
+				left:50%; 
+				margin-top: -140px;
+				margin-left: -275px;
+				border:1px solid black;
+				background:black;
+				overflow: hidden;
+			}
+			
+			.box .imgBox{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-size: cover;/*会保持图像本身的宽高比例,将图片缩放到正好完全覆盖定义背景的区域*/
+				
+			}
+			
+			.selectNode{
+				/*width: 100px; 宽度应该是可变的，所以这里不设置，后面会由li的宽度以及个数决定*/ 
+				height: 14px;
+				position: absolute;
+				left:50%;
+				transform: translate(-50%);
+				background: rgba(255,255,255,0.3);
+				bottom: 15px;
+				border-radius: 7px;
+			}
+			
+			.selectNode li{
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: white;
+				cursor: pointer;
+				margin: 2.5px 3px;
+				float: left; 
+			}
+			
+			.selectNode li.active{
+				background: #fe5001;
+			}
+			
+			.left-transition{
+				transition: 0.5s linear;
+				transform: translateX(0);
+			}
+			.left-enter{
+				transform: translateX(-520px);
+			}
+			.left-leave{
+				transform: translateX(520px);
+			}
+			
+			.right-transition{
+				transition: 0.5s linear;
+				transform: translateX(0);
+			}
+			.right-enter{
+				transform: translateX(520px);
+			}
+			.right-leave{
+				transform: translateX(-520px);
+			}
+			
+		</style>
+		
+	</head>
+	<body> 
+		<a href="javascript:;" @click='left'>left</a>
+		<a href="javascript:;" @click='right'>right</a>
+		<div class="box">
+			<div class="imgBox" v-for='i in imgNode' :style='{backgroundImage:"url(img/"+i+")"}'
+				v-show='index==$index?true:false' :transition="change"></div>
+			<ol class="selectNode" :style='{width:imgNode.length*14}+"px"'>
+				<li v-for='i in imgNode' :class='index==$index?"active":""' @click='add($index)'></li>
+			</ol>
+		</div>
+		
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					imgNode:['c1.jpg','c2.jpg','c3.jpg','c4.jpg'],
+					index:0,
+					change:'right'
+				},
+				methods:{
+					add(nodeIndex){
+						if(this.index < nodeIndex){
+							this.change = "right";
+						}else{
+							this.change = "left";
+						}
+						this.index = nodeIndex;
+					},
+					left(){
+						this.change = "right";
+						this.index++;
+						if(this.index > this.imgNode.length -1){
+							this.index = 0;
+						}
+						this.index = nodeIndex;
+					},
+					right(){
+						this.change = "left";
+						this.index--;
+						if(this.index == -1){
+							this.index = this.imgNode.length - 1;
+						}
+						this.index = nodeIndex;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<!--
+        	vue1.x 
+        	.sync 通过子组件的改变来同步父级的数据
+        -->
+		<div id="box">
+			<h1>我是父级，数据是=>{{msg}}</h1>  
+			<tab :my-msg.sync='msg'></tab> 
+		</div> 
+		
+		 
+		<template id="tab">
+			<div>
+				<input type="button" value="改变数据" @click='cg'/>
+				<h1>我是子组件,数据是=>{{myMsg}}</h1>
+			</div>
+		</template>
+		 
+		<script>
+			new Vue({
+				el:"#box",
+				data:{
+					msg:'我是父级数据'
+				},
+				components:{
+					tab:{ 
+						props:['myMsg'], 
+						template:'#tab' ,
+						methods:{
+							cg(){
+								this.myMsg = "数据改变了"
+							}
+						}
+						 
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

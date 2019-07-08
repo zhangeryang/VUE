@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue-router.js"></script>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<a v-link="{path:'/login'}">登录</a>
+			<a v-link="{path:'/search'}">内容</a>
+			<router-view></router-view>
+		</div>
+		
+		
+		<template id="login">
+			<h1>先登录试试吧</h1>
+		</template>
+		
+		<template id="search">
+			<h1>精彩内容</h1>
+			<a v-link="{path:'/search/detail/2032?a=1'}">java</a>
+			<a v-link="{path:'/search/detail/5298?a=2'}">vue</a>
+			<router-view></router-view>
+		</template>
+		
+		<template id="detail">
+			<h1>{{$route | aaa}}</h1>
+			<h1>{{$route.params | json}}</h1>
+			<h1>{{$route.path}}</h1>
+			<h1>{{$route.query | json}}</h1>
+			
+			<node :params='$route'></node>
+		</template>
+		
+		<template id="node">
+			<h1>我是子组件node</h1>
+			<button @click="get">传参</button>
+		</template>
+		
+		<script>
+			Vue.filter('aaa',function(val){
+				console.log(val)
+			})
+			
+			var app = Vue.extend();
+			
+			Vue.use(VueRouter);
+			
+			var router = new VueRouter();
+			
+			router.map({
+				'login':{
+					component:{
+						template:'#login'
+					}
+				},
+				'search':{
+					component:{
+						template:'#search'
+					},
+					subRoutes:{
+						'detail/:id':{
+							component:{
+								template:'#detail',
+								components:{
+									'node':{
+										props:['params'],
+										template:'#node',
+										methods:{
+											get(){
+												console.log(this.params)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			})
+			
+			router.start(app,'.box');
+			
+			router.redirect({
+				'/':'login'
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue-router.js"></script>
+		<script src="js/vue.min.js"></script>
+		 
+	</head>
+	<body>
+		<div class="box">
+			<a v-link='{path:"/gd"}'>广东</a>
+			<a v-link='{path:"/gx"}'>广西</a>
+			<a v-link='{path:"/yn"}'>云南</a>
+			<a v-link='{path:"/sh"}'>上海</a>
+			
+			<router-view></router-view>
+			
+			<template id="gd">
+				<h1>工作的地方</h1> 
+				<a v-link='{path:"/gd/sz"}'>深圳</a>
+				<a v-link='{path:"/gd/gz"}'>广州</a>
+				<router-view></router-view>
+			</template>
+			<template id="gx">
+				<h1>想去的地方</h1>
+			</template>
+			<template id="yn">
+				<h1>去过的地方</h1>
+			</template>
+			<template id="sh">
+				<h1>向往的地方</h1>
+			</template>
+			
+			<template id="sz"> 
+				<h1>深圳新地标</h1>
+				<img src="img/sz.jpg" width="300px"/>
+				<a v-link='{path:"/gd/sz/more"}'>更多风貌</a>
+				<router-view></router-view>
+			</template>
+			<template id="gz">
+				<h1>广州小蛮腰</h1>
+				<img src="img/gz.jpg" width="300px"/>
+			</template>
+			
+			<template id="more">
+				<ul v-for='i in arr'>
+					<li><img :src="i" width="300px"/></li>
+				</ul>
+				<button @click='cg'>换一拨</button>
+				<aaa @setcmsg='getmsg'></aaa>
+			</template>
+			
+			<template id="aaa"> 
+				<button @click='cb'>换回来</button>
+			</template>
+			
+		</div>
+		
+		<script>
+			var app = Vue.extend();
+			
+			Vue.use(VueRouter);
+			
+			var router = new VueRouter();
+			
+			router.map({
+				'gd':{
+					component:{
+						template:'#gd'
+					},
+					subRoutes:{
+						'sz':{
+							component:{
+								template:'#sz'
+							},
+							subRoutes:{
+								'more':{ 
+									component:{
+										data(){
+											return{
+												arr:['img/s1.jpg','img/s2.jpg','img/s3.jpg'] 
+											} 
+										},
+										methods:{
+											cg(){
+												this.arr = ['img/s4.jpg','img/s5.jpg'] 
+											},
+											getmsg(msg){
+												this.arr = msg
+											},
+										},
+										template:'#more',
+										components:{
+											'aaa':{
+												data(){
+													return{
+														arr:['img/s1.jpg','img/s2.jpg','img/s3.jpg'] 
+													}
+												},
+												template:'#aaa',
+												methods:{
+													cb(){ 
+														this.$emit("setcmsg",this.arr);
+													}
+												}
+											}
+										} 
+									}
+								}
+							}
+						},
+						'gz':{
+							component:{
+								template:'#gz'
+							}
+						}
+					}
+				},
+				'gx':{
+					component:{
+						template:'#gx'
+					}
+				},
+				'yn':{
+					component:{
+						template:'#yn'
+					}
+				},
+				'sh':{
+					component:{
+						template:'#sh'
+					}
+				}
+			});
+			
+			//5.启动路由
+			router.start(app,'.box');
+			
+			//给予默认值
+			router.redirect({
+				'/':'gd'
+			});
+		</script>
+	</body>
+</html>

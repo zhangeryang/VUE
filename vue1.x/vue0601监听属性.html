@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		
+		<div id = "app">
+			<p style = "font-size:25px;">计数器: {{ counter }}</p>
+			<button @click = "counter++" style = "font-size:25px;">点我</button>
+		</div>
+		<script type = "text/javascript">
+			var vm = new Vue({
+		    	el: '#app',
+		    	data: {
+		       		counter: 1
+		    	}
+		});
+		
+		//vm.$watch('监听的数据', function(){当监听的数据真正发生改变了，调用函数});
+			
+		vm.$watch('counter', function(nval, oval) {
+		   alert('计数器值的变化 :' + oval + ' 变为 ' + nval + '!');
+		});
+		</script>
+		
+	</body>
+</html>

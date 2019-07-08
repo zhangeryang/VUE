@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			div{
+				width:200px;
+				height:200px;
+				border:1px solid black;
+			}
+			
+			.change-transition{
+				opacity: 1;
+				transition: 1.3s;
+				transform: translate(0.0);
+				background: black;
+			}
+			/*
+			.change-leave{
+				opacity: 0;
+				transition: 1.3s;
+				transform: translateX(90px);
+				background: red;
+			}
+			
+			.change-enter{
+				opacity: 0;
+				transition: 1.3s;
+				transform: translateY(90px);
+				background: green;
+			}
+			*/
+			
+			.aaa{
+				opacity: 0;
+				transition: 1.3s;
+				transform: translateX(90px);
+				background: red;
+			}
+			
+			.bbb{
+				opacity: 0;
+				transition: 1.3s;
+				transform: translateY(90px);
+				background: green;
+			}
+				
+			
+		</style>
+		
+	</head>
+	<body>
+		<button @click="fn">点击</button>
+		<div v-show='show' transition='change'></div>
+		
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					show:'true'
+				},
+				methods:{
+					fn:function(){
+						this.show = !this.show;
+					}
+				},
+				transitions:{
+					'change':{
+						enterClass : 'bbb',
+						leaveClass : 'aaa'
+					}
+				}
+				
+			})
+		</script>
+		
+		<!--<script>
+			new Vue({
+				el:'body',
+				data:{
+					show:'true'
+				},
+				methods:{
+					fn:function(){
+						this.show = !this.show;
+					}
+				} 
+			})
+		</script>-->
+		
+		
+	</body>
+</html>

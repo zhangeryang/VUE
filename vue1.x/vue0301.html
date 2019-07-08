@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src= "js/vue.min.js"></script>
+		<style>
+			/*div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #eee;
+			}
+			.red{
+				background-color:red;
+			}
+			.shadow{
+				box-shadow:0 0 15px black;
+			}
+			.animate{
+				transition: 0.5s;
+			}*/
+		</style>
+	</head>
+	<body>
+		
+		<!--	当所谓的数据data发生改变时，输出的内容会从新渲染一遍	
+			    如果为了安全起见，{{*msg}}就会只渲染一次
+		<input type="button" @click="fn" value="点击"/>
+		{{*msg}}
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					msg:'hello'
+				},
+				methods:{
+					fn:function(){
+						this.msg = 'changed'
+					}
+				}
+			})
+		</script>-->
+		
+		
+		
+		<!-- {{}} === innerText
+			{{{}}} === innerHTML
+		{{{msg}}}
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					msg:'<div>hahahha</div>'
+				} 
+			})
+		</script>-->
+		
+		
+		<!-- 一旦使用VUE的方法，就不用使用VUE的模板了。
+			 v-bind:属性名='vue的data值'  ===  :属性名='vue的data值'
+		<input type="button" @click="fn" value="点击"/>
+		<img v-bind:src="url" />
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					num:0,
+					url:'img/core01.jpg'
+				},
+				methods:{
+					fn:function(){
+						this.num++;
+						this.num%2==0?this.url='img/core01.jpg':this.url='img/core02.jpg'; 
+					}
+				}
+			})
+		</script>-->
+		
+		
+		<!-- 用数组记录class类名 (此时需要用vue的方法)
+		<input type="button" @click="fn" value="点击"/>
+		<div :class="myDiv"></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					myDiv:['red','shadow']
+				},
+				methods:{
+					fn:function(){
+						this.myDiv.length==1?this.myDiv.push("shadow"):this.myDiv.pop();
+					}
+				}
+			})
+		</script>-->
+		
+		
+		<!-- 用json记录class类名(此时需要用vue的方法)
+		<input type="button" @click="fn" value="点击"/>
+		<div :class="myDiv"></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					myDiv:{
+						red:true,
+						shadow:true,
+						animate:true
+					}
+				},
+				methods:{
+					fn:function(){
+						this.myDiv.shadow = !this.myDiv.shadow;
+					}
+				}
+			})
+		</script>-->
+		 
+		
+		<!--用json记录style (此时需要用vue的方法)
+		<input type="button" @click="fn" value="点击"/>
+		<div :style="myDiv"></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					myDiv:{
+						'width':'300px',
+						'height':'300px',
+						'background':'blue'
+					}
+				},
+				methods:{
+					fn:function(){
+						this.myDiv.width = '500px';
+						this.myDiv.height = '500px';
+						this.myDiv.background = 'orange';
+					}
+				}
+			})
+		</script>-->
+		
+		
+		<!--用数组记录style (此时需要用vue的方法)
+		<input type="button" @click="fn" value="点击"/>
+		<div :style='[init,shadow]'></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					init:{
+						'width':'300px',
+						'height':'300px',
+						'background':'blue'
+					},
+					shadow:{
+						'box-shadow':'0 0 15px'
+					}
+				},
+				methods:{
+					fn:function(){
+						this.myDiv.init = {'width':'500px',
+											'height':'500px',
+											'background':'orange'};
+						 
+					}
+				}
+			})
+		</script>-->
+		
+		
+		<!--用字符串记录style (此时需要用vue的方法) 
+		<div :style='init'></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					init:{
+						'width':'300px',
+						'height':'300px',
+						'background':'blue'
+					},
+					shadow:{
+						'box-shadow':'0 0 15px'
+					}
+				} 
+			})
+		</script>-->
+		
+	</body>
+</html>

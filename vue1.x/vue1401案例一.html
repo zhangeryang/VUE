@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.div1{
+				width: 300px;
+				height: 300px;
+				border: 1px solid black;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -150px;
+				box-shadow: 0px 0px 30px 0 black;
+			}
+			
+			.div2{
+				width: 150px;
+				height: 150px;
+				border: 1px solid black;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -75px;
+				box-shadow: 0px 0px 30px 0 black;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="div1" v-shadow></div>
+		<div class="div2" v-shadow></div>
+		
+		<script>
+			Vue.directive('shadow',function(){
+				console.log("1"+this);
+				//_this只是一个变量名，this代表父函数，如果在子函数还用this，this的指向就变成子函数了，_this就是用来存储指向的。
+				var _this = this;
+				
+				//如果再有一个div，会出现只有新加的那个有效果，这是因为方法出现了覆盖现象 
+//				document.onmousemove = function(e){
+//					console.log("2"+this);
+//					var ev = e || event;
+//					console.log(ev);
+//					//计算鼠标的 x,y坐标分别对于屏幕宽高的占比
+//					var xp = ev.clientX/innerWidth;
+//					var yp = ev.clientY/innerHeight; 
+//					_this.el.style.boxShadow = (30+(-60*xp))+'px '+ (30+(-60*yp))+'px 30px 0px black';
+//					 
+//				}
+				
+				//可以用事件监听或者事件叠加
+				document.addEventListener('mousemove', 
+					function(e){
+						console.log("2"+this);
+						var ev = e || event;
+						console.log(ev);
+						//计算鼠标的 x,y坐标分别对于屏幕宽高的占比
+						var xp = ev.clientX/innerWidth;
+						var yp = ev.clientY/innerHeight; 
+						_this.el.style.boxShadow = (30+(-60*xp))+'px '+ (30+(-60*yp))+'px 30px 0px black';
+						 
+					})
+			})
+			
+			new Vue({
+				el:'body'
+			})
+		</script>
+	</body>
+</html>

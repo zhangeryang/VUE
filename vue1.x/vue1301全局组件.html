@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<aaa></aaa>
+		
+		<!--<script>
+			var plate = Vue.extend({ 
+				data(){
+					return{
+						msg:'第一次做开发'
+					}
+				},
+				template:'<h1>我是组件{{msg}}</h1>'
+			});
+			
+			Vue.component('aaa',plate);
+			
+			new Vue({
+				el:'body'
+				
+			})
+			
+		</script>-->
+		
+		<script>
+			var plate = Vue.extend({ 
+				data(){
+					return{
+						arr:['广东','云南','广西'],
+						arr2:['工作的地方','去过的地方','想去的地方']
+					}
+				},
+				template:'<h1>我是组件</h1></br><input v-for="i in arr" :value="i"/><div v-for="i in arr2">{{i}}</div> '
+			});
+			
+			Vue.component('aaa',plate);
+			
+			new Vue({
+				el:'body'
+				
+			})
+			
+		</script>
+		
+	</body>
+</html>

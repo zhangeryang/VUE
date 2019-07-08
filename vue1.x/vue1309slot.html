@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		
+		<yang>
+			<h1 slot='fslot'>China</h1>
+			<h1 slot='sslot'>fine,thinks! and you?</h1>
+		</yang>
+		
+		<template id="yyy">
+			<h1>how are you?</h1>
+			<slot name="sslot"></slot>
+			
+			<h1>yes,i am fine,what are from?</h1>
+			<slot name="fslot"></slot>
+		</template>
+		
+		<script>
+			new Vue({
+				el:'body',
+				components:{
+					yang:{
+						template:'#yyy'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

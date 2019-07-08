@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			div{
+				width:200px;
+				height:200px;
+				background-color: black; 
+			}
+			 
+		</style>
+	</head>
+	<body>
+		
+		
+		<!--//vue基本用法
+		{{msg}}
+		<script>
+			new Vue({
+				el: 'body',
+				data: {
+					msg: 'hello vue!'
+				}
+			})
+		</script>-->
+		
+		
+		<!-- //v-show 指令
+		<div v-show='show'></div>
+		<script>
+			new Vue({
+				el: 'body',
+				data: {
+					show: false
+				}
+			})
+		</script>-->
+		 
+		 
+		<!-- //v-for 指令
+		<div v-for='i in json'>{{i}}</div>
+		<div v-for='(key,value) in json'>{{key}}:{{value}}</div>
+		<div v-for='i in json'>{{$key}}:{{i}}==>{{$index}}</div>
+		<script>
+			new Vue({
+				el: 'body',
+				data: {
+					arr: ['a','b','c','d'],
+					json: {
+						name: 'yang',
+						age: '25',
+						sex: 'F'
+					}
+				}
+			})
+		</script>-->
+		
+		<!-- v-model指令 数据双向绑定
+		<input class="" type="text" v-model='left'/>+
+		<input class="" type="text" v-model='right'/>
+		{{left+right}}
+		<script>
+			new Vue({
+				el: 'body',
+				data: {
+					left:'',
+					right:''
+				}
+			})
+		</script>-->
+		
+		
+		
+		<!-- v-on:click 事件绑定		v-on:click === @click
+		<input type="button" value="显示/隐藏" v-on:click="changed"/>
+		<div v-show="show"></div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					show:true
+				},
+				methods:{
+					changed:function(){
+						this.show = !this.show;
+					}
+				}
+			})
+		</script>-->
+		
+		<!-- 事件对象 $event 如果方法不传参数，默认第一个参数就是时间对象  
+		<div v-on:click="alert(10,$event)"></div>		
+		<script>
+			new Vue({
+				el:'body', 
+				methods:{
+					alert:function(event,e){
+						console.log(event,e);
+					}
+				}
+			})
+		</script>-->
+		
+		<!-- 阻止事件冒泡
+		<div class="div1" @click="click1">
+		<input type="button" value="点击" @click.stop="input"/>
+		</div>
+		<script>
+			new Vue({
+				el:'.div1',
+				methods:{
+					click1:function(){
+						alert("我是div1");
+					},
+					input:function(event){
+						//阻止事件冒泡
+//						event.cancelBubble = true;
+//						event.stopPropagation();
+						alert("我是input");
+					}
+				}
+			})
+		</script>-->
+		
+		
+		
+		<!-- 阻止默认事件
+		<div class="div1" @contextmenu.prevent="click1"> 
+		</div>
+		<script>
+			new Vue({
+				el:'.div1',
+				methods:{
+					click1:function(event){
+//						event.preventDefault();
+						alert("我是div1");
+					} 
+				}
+			})
+		</script> --> 
+		
+	</body>
+</html>

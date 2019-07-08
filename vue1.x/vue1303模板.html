@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		 
+	</head>
+	<body>
+		
+		<aaa></aaa>
+		 
+		<!--<template id="temp">
+			{{msg}}
+		</template>-->
+		
+		<script type="text/x-template" id="temp">
+			{{msg}}
+		</script>
+		
+		<script> 
+			new Vue({
+				el:'body',
+				data:{
+					msg2:'123'
+				},
+				components:{
+					'aaa':{
+						data(){
+				 			return{
+				 				msg:'我是局部组件！'
+				 			}
+				 		},
+				 		methods:{
+				 			add:function(){
+				 				this.msg = "hahahaha!";
+				 			}
+				 		},
+					 	template:'#temp'
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>

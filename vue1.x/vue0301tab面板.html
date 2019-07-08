@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+			div{
+				width: 150px;
+				height: 150px;
+				background: #eee;
+			}
+			.active{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" v-for='i in inputValue' value="{{i}}" :class='$index==index?"active":""' @click='add($index)'/>
+		<div v-for='i in divInner' v-show='$index==index?true:false'>{{i}}</div>
+		<script>
+			new Vue({
+				el:'body',
+				data:{
+					index:0,
+					inputValue:['广东','云南','广西'],
+					divInner:['工作的地方','去过的地方','想去的地方']
+				},
+				methods:{
+					add:function(myIndex){
+						this.index = myIndex;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

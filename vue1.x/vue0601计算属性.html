@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		
+		<!--
+		<input type="text" v-model='a'/>+
+		<input type="text" v-model='b'/>=
+		{{c}}
+		<script> 
+			new Vue({
+				el:'body',
+				data:{
+					a:'',
+					b:''
+				},
+				computed:{
+					c:function(){
+						return Number(this.a) + Number(this.b);
+					}
+				}
+				
+			})
+		</script>-->
+		
+		{{c}}
+		<script> 
+			var vm = new Vue({
+				el:'body',
+				data:{
+					a:10,
+					b:20
+				},
+				computed:{
+					c:{
+						get:function(){
+							return this.a;
+						},
+						set:function(v){
+							this.b = v + this.a
+						}
+					}
+				} 
+			})
+			vm.c = 50;
+			console.log(vm.b);
+		</script>
+	</body>
+</html>
