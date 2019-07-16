@@ -114,7 +114,7 @@
 		width: 100px;
 		padding: 10px;
 		margin: 20px 0 0 400px;
-		background: #f40;
+		background: #C0C0C0;
 		border-radius: 5px;
 		
 	}

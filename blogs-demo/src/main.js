@@ -4,16 +4,26 @@ import Vue from 'vue'
 import App from './App'
 
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import routes from './router'
 
 Vue.use(VueResource)
+Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
-//给自定义指令传参
+ 
+//给自定义指令传参--全局的
 Vue.directive('action', {
 	bind: function(el, binding, vnode) {
 		el.style.color = "#f40";
 	}
+})
+
+//创建路由
+const router = new VueRouter({
+	routes:routes,
+	mode:'history'
 })
 
 /* eslint-disable no-new */
@@ -22,5 +32,6 @@ new Vue({
 	components: {
 		App
 	},
-	template: '<App/>'
+	template: '<App/>',
+	router:router
 })

@@ -1,10 +1,12 @@
 <template>
 	<div class="show-blogs">
 		<h2>博客总览</h2>
-		<input type="text"  class="searchBox" v-model="searchVal"/> 
+		<input type="text"  class="searchBox" v-model="searchVal" placeholder="搜索"/> 
 		 
-		<div v-for="blog in blogs" class="single-blog">
-			<h3 v-action>{{blog.title}}</h3>
+		<div v-for="blog in filterBlogs" class="single-blog">
+			<router-link v-bind:to="'/blog/'+blog.id">
+				<h3 v-action>{{blog.title}}</h3>
+			</router-link>
 			<p>{{blog.body}}</p>
 		</div>
 	</div>
@@ -16,7 +18,8 @@
 		name:"",
 		data(){
 			return{
-				blogs:[]
+				blogs:[],
+				searchVal:''
 			}
 		},
 		//创建完毕，属性已经绑定了
@@ -25,7 +28,14 @@
 				//console.log(data);
 				this.blogs = data.body.slice(0,10);
 			})
-		} 
+		},
+		computed:{
+			filterBlogs:function(){
+				return this.blogs.filter((blog)=>{
+					return blog.title.match(this.searchVal);
+				})
+			} 
+		}
 	}
 </script>
 
@@ -51,4 +61,7 @@
 		margin: 10px 0;
 	}
 
+	.single-blog a{
+		text-decoration:none;
+	}
 </style>
