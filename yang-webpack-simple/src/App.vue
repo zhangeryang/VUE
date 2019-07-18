@@ -1,15 +1,16 @@
 <template>
 	<div id="app">
-		<Tab :tab='tabNode'></Tab>
-		<slideTab :slide='slideNode'></slideTab>
+		<!--<Tab :tab='tabNode'></Tab>
+		<slideTab :slide='slideNode'></slideTab>-->
+		<TabSlide></TabSlide>
 	</div>
 </template>
 
 <script>
 	//引入组件
-	import Tab from './tab.vue'
-	
+	import Tab from './tab.vue' 
 	import slideTab from './slideTab.vue'
+	import TabSlide from './TabSlide.vue' 
 	
 	export default { 
 		data(){
@@ -27,7 +28,8 @@
 		},
 		components:{
 			Tab,
-			slideTab
+			slideTab,
+			TabSlide
 		}
 	}
 </script>
