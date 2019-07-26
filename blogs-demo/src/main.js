@@ -6,6 +6,10 @@ import App from './App'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import routes from './router'
+//用axios替代vue-resource
+//import axios from 'axios' 
+//
+//axios.default.baseURL='http://localhost:3000'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)

@@ -7,7 +7,7 @@
 			<router-link v-bind:to="'/blog/'+blog.id">
 				<h3 v-action>{{blog.title}}</h3>
 			</router-link>
-			<p>{{blog.body}}</p>
+			<p>{{blog.content}}</p>
 		</div>
 	</div>
 </template>
@@ -24,8 +24,8 @@
 		},
 		//创建完毕，属性已经绑定了
 		created(){
-			this.$http.get("./../static/post.json").then(function(data){
-				//console.log(data);
+			this.$http.get("http://localhost:3000/blogs").then(function(data){
+				console.log(data);
 				this.blogs = data.body.slice(0,10);
 			})
 		},

@@ -11,11 +11,12 @@
 import AddBlog from './components/AddBlog'
 import ShowBlogs from './components/ShowBlogs'
 import HeadBlog from './components/HeadBlog'
+ 
 
 export default {
   name: 'app',
   components: {
-    AddBlog,ShowBlogs,HeadBlog
+    AddBlog,ShowBlogs,HeadBlog 
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<div class="add-blog">
-		<h2>添加博客</h2>
+		<h2>编辑博客</h2>
 		<form v-show="!submmited">
 			<label>标题:</label>
 			<input type="text" v-model="blog.title"/>
@@ -20,11 +20,11 @@
 			<select v-model="blog.author">
 				<option v-for="author in authors" >{{author}}</option>
 			</select>
-			<button @click.prevent="post">添加博客</button>
+			<button @click.prevent="edit">确认</button>
 		</form>
 		
 		<div class="info" v-show="submmited">
-			<h3>您的博客已经添加成功！</h3>
+			<h3>您的博客已经修改成功！</h3>
 		</div>
 		
 		<div class="preview">
@@ -48,30 +48,34 @@
 		name: 'add-blog',
 		data() {
 			return {
+				id:this.$route.params.id,
 				blog:{
 					title:"",
 					content:"",
 					objectArr:[],
-					author:"",
-					id:""
+					author:""
 				},
 				authors:['Leo','Jack','Andy'],
-				submmited:false,
-				
+				submmited:false
 			}
 		},
 		methods:{
-			post(){
-				this.$http.post("http://localhost:3000/blogs",{
-					title:this.blog.title,
-					content:this.blog.content,
-					objectArr:this.blog.objectArr,
-					author:this.blog.author  
-				}).then(function(data){
+			update(){
+				this.$http.get("http://localhost:3000/blogs/"+this.id)
+				.then(response=>{
+					console.log(response.body)
+					this.blog = response.body;
+				})
+			},
+			edit(){
+				this.$http.put("http://localhost:3000/blogs/"+this.id, this.blog).then(function(data){
 					this.submmited = true;
 					console.log(data);
 				})
 			}
+		},
+		created(){
+			this.update();
 		}
 	}
 </script>
